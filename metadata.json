@@ -1,0 +1,6 @@
+{
+  "name": "Nutrious AI",
+  "description": "A premium AI-powered nutrition app with glassmorphism UI, real-time habits, AI food scanning, and an AI chat coach.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": []
+}

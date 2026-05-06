@@ -1,0 +1,76 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stores user preferences and current health metrics.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "calorieGoal": { "type": "number" },
+        "waterGoal": { "type": "number" },
+        "stepGoal": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "DailyStats": {
+      "title": "Daily Nutrition & Habit Stats",
+      "description": "Aggregated stats for a specific day.",
+      "type": "object",
+      "properties": {
+        "caloriesConsumed": { "type": "number" },
+        "caloriesBurned": { "type": "number" },
+        "waterIntake": { "type": "number" },
+        "steps": { "type": "number" },
+        "date": { "type": "string", "format": "date" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "MealLog": {
+      "title": "Individual Meal Entry",
+      "description": "A single food item or meal logged.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "calories": { "type": "number" },
+        "protein": { "type": "number" },
+        "carbs": { "type": "number" },
+        "fat": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "imageUrl": { "type": "string" }
+      }
+    },
+    "ChatMessage": {
+      "title": "AI Coaching Message",
+      "description": "Messages in the AI coaching session.",
+      "type": "object",
+      "properties": {
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "content": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile document."
+    },
+    "/users/{userId}/dailyStats/{date}": {
+      "schema": "DailyStats",
+      "description": "Daily aggregated stats."
+    },
+    "/users/{userId}/meals/{mealId}": {
+      "schema": "MealLog",
+      "description": "Individual meals logged."
+    },
+    "/users/{userId}/messages/{msgId}": {
+      "schema": "ChatMessage",
+      "description": "Chat message history."
+    }
+  }
+}
